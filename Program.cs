@@ -1,62 +1,50 @@
 ﻿using System;
 
-namespace Family_Averge_Age01
+namespace kelimenin_uzunluğu
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Kullanıcıdan adını ve soyadını girmesini isteyin
-            Console.WriteLine("Lütfen Adınız Girin: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Lütfen Adınız Girin: ");
-            string surname = Console.ReadLine();
+            // Dört kelimeyi bildirin
+            string Kalima1, Kalima2, Kalima3, Kalima4;
 
-            // Print adı ve soyadı
-            Console.WriteLine($"Merhaba, {name} {surname}!");
+            // Kullanıcıdan dört kelimeyi girmesini isteyin
+            Console.WriteLine("Enter four words: ");
+            Kalima1 = Console.ReadLine();
+            Kalima2 = Console.ReadLine();
+            Kalima3 = Console.ReadLine();
+            Kalima4 = Console.ReadLine();
 
-            // Kullanıcıdan odadaki kişi sayısını girmesini isteyin
-            Console.WriteLine("odanızda kaç kişi var?");
-            int numPeople = Convert.ToInt16(Console.ReadLine());
+            // En büyük uzunluğa sahip kelimeyi bulun
+            string largestWord = FindLargestWord(Kalima1, Kalima2, Kalima3, Kalima4);
 
-            // Dizi kurdum
-            int[] ages = new int[numPeople];
+            // En büyük uzunluğa sahip kelimeyi göster
+            Console.WriteLine("The word with the largest length is: " + largestWord);
+            Console.ReadLine();
+        }
 
-            // Kullanıcıdan odadaki kişilerin yaşlarını girmesini isteyin
-            Console.WriteLine("Lütfen odadaki kişilerin yaşlarını, bir boşlukla ayırarak girin:");
-            string[] ageStrings = Console.ReadLine().Split(' ');
-            for (int i = 0; i < numPeople; i++)
+        static string FindLargestWord(string Kalima1, string Kalima2, string Kalima3, string Kalima4)
+        {
+            // Initialize the largest word to be the first word
+            string largestWord = Kalima1;
+
+            // Diğer kelimelerin uzunluklarını en büyük kelime ile karşılaştırın
+            if (Kalima2.Length > largestWord.Length)
             {
-                ages[i] = Convert.ToInt16(ageStrings[i]);
+                largestWord = Kalima2;
+            }
+            if (Kalima3.Length > largestWord.Length)
+            {
+                largestWord = Kalima3;
+            }
+            if (Kalima4.Length > largestWord.Length)
+            {
+                largestWord = Kalima4;
             }
 
-            // Odadaki kişilerin yaş ortalamasını hesaplayın
-            int totalAge = 0, numAdults = 0;
-            
-            foreach (int age in ages)
-            {
-                totalAge += age;
-                if (age >= 18)
-                {
-                    numAdults++;
-                }
-            }
-            double ageAverage = (double)totalAge / numPeople;
-
-            // Yaş ortalamasını ve odadaki yetişkin sayısına göre bir mesaj yazdırın
-            Console.WriteLine($"The age average of the people in the room is {ageAverage} years.");
-            if (numAdults > 4)
-            {
-                Console.WriteLine("Bu büyük bir aile!");
-            }
-            else
-            {
-                Console.WriteLine("Bu küçük bir aile.");
-            }
-
-            // Yaşı 18'den büyük olan kişilerin sayısını yazdır
-            Console.WriteLine("Yaşı 18'den büyük olan " + numAdults+ " kişi.");
-            Console.ReadKey();
+            // En büyük kelimeyi döndür
+            return largestWord;
         }
     }
 }
